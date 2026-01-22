@@ -1,66 +1,113 @@
-# Job Portal
+# JobCraft
+
+A modern job portal web application built with React and Firebase.
+
+![React](https://img.shields.io/badge/React-18.3-61DAFB?logo=react&logoColor=white)
+![Firebase](https://img.shields.io/badge/Firebase-11.10-FFCA28?logo=firebase&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind-3.4-38B2AC?logo=tailwindcss&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-6.0-646CFF?logo=vite&logoColor=white)
 
 ## Table of Contents
 
--   [Introduction](#introduction)
--   [Features](#features)
--   [Installation](#installation)
--   [Usage](#usage)
--   [Technologies Used](#technologies-used)
--   [Live Link](#live-link)
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [Live Demo](#live-demo)
 
-## Introduction
+## Overview
 
-The Job Portal is a web application that allows users to search and apply for jobs. Employers can post job listings and manage applications. The application is built using React, Firebase, Tailwind CSS, and DaisyUI.
+**JobCraft** connects job seekers with employers through an intuitive platform. Users can search, filter, and apply for jobs, while employers can post listings and manage applications.
 
 ## Features
 
--   User authentication (sign up, sign in, sign out)
--   Job search and filtering
--   Job application submission
--   Employer job posting and management
--   Responsive design
+| For Job Seekers          | For Employers           |
+| ------------------------ | ----------------------- |
+| Search & filter jobs     | Post job listings       |
+| Apply with one click     | Manage applications     |
+| Track application status | View applicant profiles |
+| Save favorite jobs       | Edit/delete postings    |
 
-## Installation
+**Additional Features:**
 
-To get started with the project, follow these steps:
+- 🔐 Firebase Authentication (Email/Google)
+- 📱 Fully responsive design
+- ⚡ Modern animations with Framer Motion
+- 🎨 Premium UI with Tailwind CSS & DaisyUI
 
-1. Clone the repository:
+## Tech Stack
 
-    ```sh
-    git clone https://github.com/your-username/job-portal-client.git
-    ```
+| Category  | Technologies             |
+| --------- | ------------------------ |
+| Frontend  | React 18, React Router 7 |
+| Styling   | Tailwind CSS, DaisyUI    |
+| Animation | Framer Motion            |
+| Backend   | Firebase Auth, REST API  |
+| Build     | Vite                     |
+| Hosting   | Firebase Hosting         |
 
-2. Navigate to the project directory:
+## Getting Started
 
-    ```sh
-    cd job-portal-client
-    ```
+### Prerequisites
 
-3. Install the dependencies:
+- Node.js 18+
+- npm or yarn
 
-    ```sh
-    npm install
-    ```
+### Installation
 
-4. Create a `.env` file in the root directory and add your Firebase configuration:
+```bash
+# Clone repository
+git clone https://github.com/miftah1299/jobcraft-client.git
+cd jobcraft-client
 
-5. Start the development server:
-    ```sh
-    npm run dev
-    ```
+# Install dependencies
+npm install
 
-## Usage
+# Create environment file
+cp .env.example .env.local
+# Add your Firebase config to .env.local
 
-Once the development server is running, you can access the application at `http://localhost:3000`. You can sign up as a new user, search for jobs, and apply for them. Employers can post new job listings and manage applications.
+# Start development server
+npm run dev
+```
 
-## Technologies Used
+### Environment Variables
 
--   Tailwind CSS
--   DaisyUI
--   React Router
--   Firebase
+```env
+VITE_FIREBASE_API_KEY=your_api_key
+VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
+VITE_FIREBASE_PROJECT_ID=your_project_id
+VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
+VITE_FIREBASE_APP_ID=your_app_id
+```
 
-## Live Link
+## Project Structure
 
-Live link: [JobPortal](https://job-portal-cd467.web.app/)
+```
+src/
+├── components/     # Reusable UI components
+├── contexts/       # React context providers
+├── hooks/          # Custom React hooks
+├── layouts/        # Page layouts
+├── pages/          # Route pages
+│   ├── About/
+│   ├── Applications/
+│   ├── Auth/
+│   ├── Home/
+│   ├── Jobs/
+│   └── NotFound/
+├── routes/         # Route configuration
+└── utils/          # Utility functions
+```
+
+## Live Demo
+
+🔗 **[jobcraft-portal.web.app](https://jobcraft-portal.web.app)**
+
+---
+
+<p align="center">
+  Made with ❤️ by <a href="https://github.com/jannat-miftahul">Miftahul Jannat</a>
+</p>
