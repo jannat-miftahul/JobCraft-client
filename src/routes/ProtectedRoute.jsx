@@ -2,6 +2,7 @@ import { useContext } from "react";
 import AuthContext from "../context/AuthContext";
 import { Navigate, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
+import LoadingSpinner from '../components/LoadingSpinner.jsx'
 import { div } from "motion/react-client";
 
 const ProtectedRoute = ({ children }) => {
@@ -12,9 +13,7 @@ const ProtectedRoute = ({ children }) => {
 
     if (loading) {
         return (
-            <div className="flex items-center justify-center h-screen">
-                <span className="loading loading-dots loading-lg"></span>
-            </div>
+            <LoadingSpinner text="Checking Authentication..." />
         );
     }
 
