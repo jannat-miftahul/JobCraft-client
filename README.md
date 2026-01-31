@@ -97,9 +97,8 @@ src/
 │   ├── Auth/
 │   ├── Home/
 │   ├── Jobs/
-│   └── NotFound/
+│   └── NotFoundPage/
 ├── routes/         # Route configuration
-└── utils/          # Utility functions
 ```
 
 ## Live Demo

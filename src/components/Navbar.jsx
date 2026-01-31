@@ -96,16 +96,11 @@ const Navbar = () => {
                     <div className="flex items-center justify-between h-16 lg:h-20">
                         {/* Logo */}
                         <Link to="/" className="flex items-center gap-2 sm:gap-3 group">
-                            <motion.div
-                                whileHover={{ rotate: 5, scale: 1.05 }}
-                                transition={{ type: "spring", stiffness: 300 }}
-                            >
-                                <img
-                                    className="w-10 h-10 sm:w-12 sm:h-12 object-contain rounded-full ring-2 ring-teal/20 group-hover:ring-teal/40 transition-all duration-300"
-                                    src={logo}
-                                    alt="JobCraft"
-                                />
-                            </motion.div>
+                            <img
+                                className="w-10 h-10 sm:w-12 sm:h-12 object-contain rounded-full ring-2 ring-teal/20 group-hover:ring-teal/40 transition-all duration-300"
+                                src={logo}
+                                alt="JobCraft"
+                            />
                             <div className="flex flex-col">
                                 <motion.span
                                     className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-primaryDark via-teal to-primaryLight bg-clip-text text-transparent relative"
