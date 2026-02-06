@@ -104,7 +104,7 @@ const Footer = () => {
                     <div className="col-span-2 md:col-span-3 lg:col-span-2">
                         <Link to="/" className="inline-flex items-center gap-3 mb-6 group">
                             <motion.div
-                                whileHover={{ scale: 1.1, rotate: 5 }}
+                                // whileHover={{ scale: 1.1, rotate: 5 }}
                                 transition={{ type: "spring", stiffness: 300 }}
                                 className="relative"
                             >
