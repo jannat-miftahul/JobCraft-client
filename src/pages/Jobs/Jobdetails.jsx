@@ -30,6 +30,41 @@ const Jobdetails = () => {
     const [isSaved, setIsSaved] = useState(false);
     const [loading, setLoading] = useState(true);
 
+    // Validate data and handle loading
+    useEffect(() => {
+        if (_id && title && company) {
+            setLoading(false);
+        } else {
+            // If critical data is missing, show error and redirect
+            const timer = setTimeout(() => {
+                toast.error("Failed to load job details");
+                navigate("/jobs");
+            }, 2000);
+            return () => clearTimeout(timer);
+        }
+    }, [_id, title, company, navigate]);
+
+    const handleShare = () => {
+        navigator.clipboard.writeText(window.location.href);
+        toast.success("Link copied to clipboard!");
+    };
+
+    const handleSave = () => {
+        setIsSaved(!isSaved);
+        toast.success(isSaved ? "Removed from saved jobs" : "Job saved!");
+    };
+
+    const getJobTypeColor = (type) => {
+        const colors = {
+            "Full-time": "bg-emerald/10 text-emerald border-emerald/20",
+            "Part-time": "bg-purple/10 text-purple border-purple/20",
+            Remote: "bg-teal/10 text-teal border-teal/20",
+            Contract: "bg-amber/10 text-amber border-amber/20",
+            Internship: "bg-coral/10 text-coral border-coral/20",
+        };
+        return colors[type] || "bg-gray-100 text-gray-600 border-gray-200";
+    };
+
     // Show loading spinner while validating data
     if (loading) {
         return (
@@ -155,6 +190,33 @@ const Jobdetails = () => {
                                 Job Description
                             </h2>
                             <p className="text-slate leading-relaxed">{description}</p>
+                        </motion.div>
+
+                        {/* Requirements */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100"
+                        >
+                            <h2 className="text-2xl font-bold text-primaryDark mb-4 flex items-center gap-2">
+                                <div className="w-1 h-6 bg-gradient-to-b from-purple to-indigo rounded-full" />
+                                Requirements
+                            </h2>
+                            <ul className="space-y-3">
+                                {requirements?.map((requirement, index) => (
+                                    <motion.li
+                                        key={index}
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 0.3 + index * 0.05 }}
+                                        className="flex items-start gap-3 text-slate"
+                                    >
+                                        <FiCheckCircle className="text-emerald mt-1 flex-shrink-0" />
+                                        <span>{requirement}</span>
+                                    </motion.li>
+                                ))}
+                            </ul>
                         </motion.div>
 
                         {/* Responsibilities */}
