@@ -152,6 +152,41 @@ const AddJob = () => {
         </div>
     );
 
+    const TextareaField = ({ label, icon: Icon, hint, ...props }) => (
+        <div className="space-y-2">
+            <label className="flex items-center gap-2 text-sm font-medium text-primaryDark">
+                {Icon && <Icon className="w-4 h-4 text-slate" />}
+                {label}
+            </label>
+            <textarea
+                {...props}
+                className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all text-gray-700 placeholder-slate resize-none"
+                rows={4}
+            />
+            {hint && (
+                <p className="flex items-center gap-1.5 text-xs text-slate">
+                    <FiAlertCircle className="w-3.5 h-3.5" />
+                    {hint}
+                </p>
+            )}
+        </div>
+    );
+
+    const SelectField = ({ label, icon: Icon, options, ...props }) => (
+        <div className="space-y-2">
+            <label className="flex items-center gap-2 text-sm font-medium text-primaryDark">
+                {Icon && <Icon className="w-4 h-4 text-slate" />}
+                {label}
+            </label>
+            <select
+                {...props}
+                className="w-full px-4 py-3.5 bg-white border border-gray-200 rounded-xl focus:outline-none focus:border-teal focus:ring-2 focus:ring-teal/20 transition-all text-gray-700 cursor-pointer appearance-none"
+            >
+                {options}
+            </select>
+        </div>
+    );
+
     return (
         <div className="min-h-screen bg-gradient-to-br from-background via-white to-teal/5 py-8 sm:py-12">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
