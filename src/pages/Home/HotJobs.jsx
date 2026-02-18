@@ -17,7 +17,17 @@ const HotJobs = () => {
                 // Sort by date (newest first) and take only 8 jobs for 2 rows
                 const sortedJobs = data
                     .sort((a, b) => new Date(b.createdAt || b.deadline) - new Date(a.createdAt || a.deadline))
-                    .slice(0, 8);
+                    .slice(0, 8)
+                    .map((job) => ({
+                        ...job,
+                        salaryRange: job.salaryRange
+                            ? {
+                                ...job.salaryRange,
+                                min: Number(job.salaryRange.min),
+                                max: Number(job.salaryRange.max),
+                            }
+                            : job.salaryRange,
+                    }));
                 setJobs(sortedJobs);
                 setLoading(false);
             })
