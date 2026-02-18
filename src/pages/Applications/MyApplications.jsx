@@ -30,6 +30,23 @@ const MyApplications = () => {
             .catch(() => setLoading(false));
     }, [user.email, axiosSecure]);
 
+    useEffect(() => {
+        let result = applications;
+
+        if (searchTerm) {
+            result = result.filter(
+                (app) =>
+                    app.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                    app.company?.toLowerCase().includes(searchTerm.toLowerCase())
+            );
+        }
+
+        if (statusFilter !== "all") {
+            result = result.filter((app) => app.status === statusFilter);
+        }
+
+        setFilteredApplications(result);
+    }, [searchTerm, statusFilter, applications]);
 
     const handleDeleteApplication = (id) => {
         Swal.fire({
@@ -63,6 +80,44 @@ const MyApplications = () => {
         });
     };
 
+    const getStatusConfig = (status) => {
+        const configs = {
+            pending: {
+                color: "bg-amber/10 text-amber border-amber/20",
+                icon: FiClock,
+                label: "Pending",
+            },
+            reviewed: {
+                color: "bg-blue-500/10 text-blue-600 border-blue-500/20",
+                icon: FiAlertCircle,
+                label: "Under Review",
+            },
+            accepted: {
+                color: "bg-emerald/10 text-emerald border-emerald/20",
+                icon: FiCheckCircle,
+                label: "Accepted",
+            },
+            rejected: {
+                color: "bg-coral/10 text-coral border-coral/20",
+                icon: FiXCircle,
+                label: "Rejected",
+            },
+        };
+        return configs[status] || configs.pending;
+    };
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: { staggerChildren: 0.08 },
+        },
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0 },
+    };
 
     return (
         <div className="min-h-screen bg-background py-8 sm:py-12">
@@ -255,7 +310,35 @@ const MyApplications = () => {
                     </motion.div>
                 )}
 
-        
+                {/* Empty State */}
+                {!loading && filteredApplications.length === 0 && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="text-center py-20"
+                    >
+                        <div className="w-24 h-24 bg-purple/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <FiFileText className="text-4xl text-purple" />
+                        </div>
+                        <h3 className="text-2xl font-bold text-primaryDark mb-2">
+                            {searchTerm || statusFilter !== "all"
+                                ? "No matching applications"
+                                : "No applications yet"}
+                        </h3>
+                        <p className="text-slate mb-6">
+                            {searchTerm || statusFilter !== "all"
+                                ? "Try adjusting your filters"
+                                : "Start applying to jobs to see them here!"}
+                        </p>
+                        <Link
+                            to="/jobs"
+                            className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple to-indigo text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-purple/30 transition-all"
+                        >
+                            <FiBriefcase />
+                            <span>Browse Jobs</span>
+                        </Link>
+                    </motion.div>
+                )}
             </div>
         </div>
     );
